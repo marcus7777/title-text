@@ -15,7 +15,7 @@
     <template is="dom-if" if="[[editable]]">
       <link rel="import" href="../paper-input/paper-input.html">
       <template is="dom-if" if="[[edit]]">
-        <paper-input label="[[label]]" value="{{value}}" on-blur="notEdit"></paper-input>
+        <paper-input label="[[label]]" value="{{value}}" on-blur="notEdit" on-keydown="checkForEnter"></paper-input>
       </template>
       <template is="dom-if" if="[[!edit]]">
         <h1 on-tap="goEdit">[[value]]</h1>
@@ -42,6 +42,13 @@
     },
     goEdit: function(undefined){
       this.edit = true
+    },
+    checkForEnter: function (e) {
+      // check if 'enter' was pressed
+      if (e.keyCode === 13) {
+        // enter pressed!
+        this.edit = false
+      }
     },
   })
 </script>
