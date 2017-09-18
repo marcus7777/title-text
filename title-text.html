@@ -1,0 +1,47 @@
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+  `<title-text></title-text>` title-text
+  @demo demo.html
+-->
+<dom-module id="title-text">
+  <template>
+    <style>:host {display:inline-block;color:#666}</style>
+    
+    <template is="dom-if" if="[[!editable]]">
+      <h1>[[value]]</h1>
+    </template>
+    
+    <template is="dom-if" if="[[editable]]">
+      <link rel="import" href="../paper-input/paper-input.html">
+      <template is="dom-if" if="[[edit]]">
+        <paper-input label="[[label]]" value="{{value}}" on-blur="notEdit"></paper-input>
+      </template>
+      <template is="dom-if" if="[[!edit]]">
+        <h1 on-tap="goEdit">[[value]]</h1>
+      </template>
+    </template>
+    
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: "title-text",
+    properties:{
+      edit:{
+        type:Boolean,
+        value:false,
+      },
+      editable:{
+        type:Boolean,
+        value:false,
+      },
+    },
+    notEdit: function(undefined){
+      this.edit = false
+    },
+    goEdit: function(undefined){
+      this.edit = true
+    },
+  })
+</script>
