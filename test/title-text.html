@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>title-text</title>
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <script src="../../iron-test-helpers/mock-interactions.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../../test-fixture/test-fixture.html">
+    <link rel="import" href="../title-text.html">
+  </head>
+  <body>
+    <test-fixture id="titleText">
+      <template>
+        <title-text></title-text> //TODO add attributes
+      </template>
+    </test-fixture>
+    <script>
+      suite('<title-text>', function () {
+        var titleText;
+        setup(function () {
+          titleText = fixture('titleText');
+        });
+        teardown(function () {
+          //...
+        });
+        suite("This test is just to show that tests are running", function () {
+          test("test is running", function(done) {
+            done()
+          })
+        })
+        suite('These test allow you to interact with the element', function () {
+          test('can be triggered with space', function(done) {
+            titleText.addEventListener('keydown', function() {
+              done()
+            })
+            MockInteractions.pressSpace(titleText)
+          })
+          test('can be clicked', function(done) {
+            titleText.addEventListener('click', function() {
+              done()
+            })
+            MockInteractions.tap(titleText)
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
